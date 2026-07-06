@@ -1,0 +1,148 @@
+{
+  "_meta": {
+    "project": "New Infinity",
+    "generated": "2026-07-06",
+    "source_files": [
+      "Engine/include/Engine/Offsets/KnownOffsets.h",
+      "Engine/include/Engine/Offsets/Netvars.h"
+    ],
+    "dump_reference": "a2x/cs2-dumper style, build 14166 (2026-07-02) e build 14167 (2026-07-06, m_steamID)",
+    "note": "Offsets do CS2 mudam a cada patch da Valve. Isso e um snapshot desta sessao - conferir contra um dump fresco antes de reusar depois de um update do jogo."
+  },
+
+  "globals_dw": {
+    "_note": "Relativo a client.dll, exceto onde indicado. Fonte: CompiledOffsets em KnownOffsets.h - fallback compilado; dwEntityList tambem e resolvivel por sig-scan em runtime (OffsetRegistry), os demais ainda so usam este valor fixo.",
+    "dwLocalPlayerPawn":       { "hex": "0x2341528", "decimal": 36966184 },
+    "dwEntityList":            { "hex": "0x24E7680", "decimal": 38696576, "note": "tambem resolvido por sig-scan (OffsetRegistry) em runtime; este e o fallback" },
+    "dwViewMatrix":            { "hex": "0x23469C0", "decimal": 36986304 },
+    "dwPlantedC4":             { "hex": "0x234FE28", "decimal": 37027368 },
+    "dwGlobalVars":            { "hex": "0x20616D0", "decimal": 33966288, "note": "base do curtime (ver manual.curtime)" },
+    "dwViewAngles":            { "hex": "0x2356748", "decimal": 37043016, "note": "angulos da camera, usado pelo Player Wheel" },
+    "dwSensitivity":           { "hex": "0x233E8F8", "decimal": 37033720 },
+    "dwSensitivity_sensitivity": { "hex": "0x58", "decimal": 88, "note": "offset relativo dentro da struct de dwSensitivity" },
+    "dwForceAttack":           { "hex": "0x2064A90", "decimal": 33983120, "note": "reservado, sem uso hoje - NAO confirmado no dump mais recente" },
+    "dwNetworkGameClient":     { "hex": "0x90A1A0", "decimal": 9469344, "note": "CNetworkGameClient - relativo a engine2.dll, NAO a client.dll" },
+    "deltaTick":               { "hex": "0x24C", "decimal": 588, "note": "relativo a dwNetworkGameClient" },
+    "dwLocalPlayerController": { "hex": "0x2320570", "decimal": 36963184 }
+  },
+
+  "netvars_m": {
+    "_note": "Offsets de CAMPO dentro de classes do schema do CS2 (nao sao codigo, entao nao da pra sig-scan - fonte confiavel e um dump do schema tipo a2x/cs2-dumper). Cada entrada indica a classe/struct dona do campo quando relevante.",
+
+    "m_hPlayerPawn":    { "hex": "0x90C",  "decimal": 2316, "class": "CCSPlayerController", "note": "handle do pawn" },
+    "m_iHealth":        { "hex": "0x34C",  "decimal": 844,  "type": "int32" },
+    "m_vOldOrigin":     { "hex": "0x1390", "decimal": 5008, "type": "Vector3", "note": "posicao dos pes" },
+    "m_iTeamNum":       { "hex": "0x3EB",  "decimal": 1003, "type": "uint8", "note": "2 = TR, 3 = CT" },
+    "m_lifeState":      { "hex": "0x354",  "decimal": 852,  "type": "uint8", "note": "LIFE_ALIVE = 0, LIFE_DEAD = 2" },
+    "m_modelState":     { "hex": "0x150",  "decimal": 336,  "class": "CSkeletonInstance", "note": "bone matrix fica em +0x80 a partir daqui" },
+    "m_pGameSceneNode": { "hex": "0x330",  "decimal": 816 },
+    "m_iszPlayerName":  { "hex": "0x6F4",  "decimal": 1780, "type": "char[128]" },
+    "m_vecVelocity":    { "hex": "0x430",  "decimal": 1072 },
+    "m_steamID":        { "hex": "0x780",  "decimal": 1920, "type": "uint64", "class": "CBasePlayerController", "note": "SteamID64 de cada jogador - confirmado no dump build 14167 (2026-07-06)" },
+
+    "m_hObserverPawn":     { "hex": "0x910",  "decimal": 2320 },
+    "m_pObserverServices": { "hex": "0x11F8", "decimal": 4600 },
+    "m_hObserverTarget":   { "hex": "0x4C",   "decimal": 76 },
+
+    "m_flFlashBangTime": { "hex": "0x13EC", "decimal": 5100 },
+
+    "m_pAimPunchServices":      { "hex": "0x1490", "decimal": 5264, "class": "C_CSPlayerPawn", "note": "ponteiro pra CCSPlayer_AimPunchServices" },
+    "m_predictableBaseAngle":   { "hex": "0x50",   "decimal": 80,   "type": "QAngle", "note": "punch ja aplicado client-side - usado pelo recoil control" },
+    "m_unpredictableBaseAngle": { "hex": "0xA4",   "decimal": 164,  "type": "QAngle", "note": "correcao vinda do servidor - nao usado ainda" },
+    "m_iShotsFired":            { "hex": "0x1C64", "decimal": 7268, "note": ">0 durante o spray" },
+
+    "m_bBombTicking":      { "hex": "0x1160", "decimal": 4448, "class": "C_PlantedC4" },
+    "m_bBombDefused":      { "hex": "0x11B4", "decimal": 4532, "class": "C_PlantedC4" },
+    "m_nBombSite":         { "hex": "0x1164", "decimal": 4452, "class": "C_PlantedC4" },
+    "m_flC4Blow":          { "hex": "0x1190", "decimal": 4496, "class": "C_PlantedC4", "note": "tempo absoluto de jogo - restante = alvo - curtime" },
+    "m_hBombDefuser":      { "hex": "0x11B8", "decimal": 4536, "class": "C_PlantedC4" },
+    "m_flDefuseCountDown": { "hex": "0x11B0", "decimal": 4528, "class": "C_PlantedC4" },
+
+    "m_nodeAbsOrigin": { "hex": "0xC8", "decimal": 200, "note": "origin de entidades nao-pawn (bomba/granada), dentro do scene node" },
+
+    "m_pEntity":      { "hex": "0x10", "decimal": 16 },
+    "m_designerName": { "hex": "0x20", "decimal": 32, "note": "nome da granada" },
+
+    "m_entitySpottedState": { "hex": "0x1C38", "decimal": 7224 },
+    "m_bSpotted":           { "hex": "0x8",    "decimal": 8, "note": "relativo a m_entitySpottedState" },
+
+    "m_vecViewOffset": { "hex": "0xE70", "decimal": 3696, "note": "reservado, sem uso hoje" },
+
+    "m_pInventoryServices": { "hex": "0x810", "decimal": 2064, "class": "CCSPlayerController" },
+    "m_unMusicID":          { "hex": "0x58",  "decimal": 88,   "type": "uint16", "note": "relativo a InventoryServices" },
+
+    "m_pWeaponServices":      { "hex": "0x11E0", "decimal": 4576,  "class": "C_BasePlayerPawn" },
+    "m_hMyWeapons":           { "hex": "0x48",   "decimal": 72,    "type": "CUtlVector", "note": "size em +0x0, array em +0x8" },
+    "m_hActiveWeapon":        { "hex": "0x60",   "decimal": 96,    "note": "handle da arma sacada" },
+    "m_hViewmodelAttachment": { "hex": "0x1688", "decimal": 5768,  "note": "handle da entidade viewmodel" },
+    "m_AttributeManager":     { "hex": "0x1180", "decimal": 4480 },
+    "m_Item":                 { "hex": "0x50",   "decimal": 80 },
+    "m_iItemDefinitionIndex": { "hex": "0x1BA",  "decimal": 442 },
+    "m_nFallbackPaintKit":    { "hex": "0x1658", "decimal": 5720 },
+    "m_nFallbackSeed":        { "hex": "0x165C", "decimal": 5724 },
+    "m_flFallbackWear":       { "hex": "0x1660", "decimal": 5728 },
+    "m_nFallbackStatTrak":    { "hex": "0x1664", "decimal": 5732 },
+    "m_iEntityQuality":       { "hex": "0x1BC",  "decimal": 444, "note": "StatTrak = 9" },
+    "m_iItemIDHigh":          { "hex": "0x1D0",  "decimal": 464, "note": "escrito como -1 (critico)" },
+    "m_iItemIDLow":           { "hex": "0x1D4",  "decimal": 468, "note": "escrito como -1 junto com o High" },
+    "m_iAccountID":           { "hex": "0x1D8",  "decimal": 472 },
+    "m_OriginalOwnerXuidLow": { "hex": "0x1650", "decimal": 5712 },
+
+    "m_bRestoreCustomMaterialAfterPrecache": { "hex": "0x1B8", "decimal": 440, "type": "bool", "note": "NAO escrito em lugar nenhum hoje - causou crash confirmado no caminho da faca (2026-07-03)" },
+    "m_bInitialized":                        { "hex": "0x1E8", "decimal": 488, "type": "bool", "note": "idem - so leitura de referencia" },
+    "m_bDisallowSOC":                        { "hex": "0x1E9", "decimal": 489, "type": "bool", "note": "idem - so leitura de referencia" },
+
+    "m_MeshGroupMask":       { "hex": "0x1C8", "decimal": 456, "type": "uint64", "note": "relativo a m_modelState - troca a malha renderizada pra variante pintada (=2)" },
+    "m_modelStateReloadFlag":{ "hex": "0x20",  "decimal": 32,  "note": "NAO CONFIRMADO - fonte: codigo de terceiro (UnknownCheats). Relativo a m_modelState" },
+
+    "m_pSceneNodeOwner": { "hex": "0x30",  "decimal": 48,   "class": "CGameSceneNode", "note": "CEntityInstance* dono do node" },
+    "m_pChild":          { "hex": "0x40",  "decimal": 64,   "class": "CGameSceneNode" },
+    "m_pNextSibling":    { "hex": "0x48",  "decimal": 72,   "class": "CGameSceneNode" },
+    "m_hOwnerEntity":    { "hex": "0x520", "decimal": 1312, "class": "C_BaseEntity", "type": "CHandle<C_BaseEntity>" },
+    "m_CBodyComponent":  { "hex": "0x30",  "decimal": 48,   "class": "C_BaseEntity" },
+
+    "m_hHudModelArms":     { "hex": "0x1B58", "decimal": 7000, "class": "C_CSPlayerPawn", "note": "NAO CONFIRMADO contra o dump mais recente" },
+    "m_entityFlags":       { "hex": "0x30",   "decimal": 48,   "class": "CEntityIdentity", "note": "NAO CONFIRMADO" },
+    "m_nSubclassID":       { "hex": "0x380",  "decimal": 896,  "class": "C_BaseEntity", "note": "NAO CONFIRMADO - subclasse/receita da faca" },
+    "m_animController":    { "hex": "0x4E0",  "decimal": 1248, "note": "NAO CONFIRMADO" },
+    "m_pGraphInstanceAG2": { "hex": "0x448",  "decimal": 1096, "note": "NAO CONFIRMADO - ponteiro do grafo AG2" },
+
+    "m_iReapplyProvisionParity": { "hex": "0x20", "decimal": 32, "class": "C_EconItemView", "note": "confirmado por coincidencia numerica com CAttributeManager, nao pela cadeia de heranca completa" },
+
+    "m_AttributeList":               { "hex": "0x208", "decimal": 520, "class": "C_EconItemView" },
+    "m_Attributes":                  { "hex": "0x8",   "decimal": 8,   "class": "CAttributeList", "note": "CUtlVector (ponteiro)" },
+    "m_attrVecOffset":               { "hex": "0x210", "decimal": 528, "note": "= m_AttributeList + m_Attributes, relativo ao item" },
+    "m_networkedDynamicAttrsOffset": { "hex": "0x288", "decimal": 648, "note": "= 0x280 + 0x8 - segunda lista que o regen pode ler" },
+
+    "kAttrSize":       { "value": "0x48", "decimal": 72, "note": "sizeof(CEconItemAttribute) - NAO e um offset de memoria" },
+    "kAttrPaintDef":   { "value": 6, "note": "indice de atributo (paint kit) - NAO e um offset de memoria" },
+    "kAttrPatternDef": { "value": 7, "note": "indice de atributo (pattern seed) - NAO e um offset de memoria" },
+    "kAttrWearDef":    { "value": 8, "note": "indice de atributo (wear/float) - NAO e um offset de memoria" }
+  },
+
+  "manual": {
+    "_note": "Nao vem de nenhum dump de schema - dado de layout interno (porte de Aimbot/OffsetsManual.cs).",
+    "curtime": { "hex": "0x30", "decimal": 48, "note": "offset do curtime dentro de CGlobalVarsBase, relativo a globals_dw.dwGlobalVars" }
+  },
+
+  "bone_indices": {
+    "_note": "NAO SAO offsets de memoria - sao indices dentro do boneMatrix (cada bone ocupa indice*32 bytes). Especificos do MODELO 3D do CS2 (CT/T) - calibraveis via 'Bone debug' do ESP se a Valve trocar os modelos.",
+    "chest":     { "value": -1, "note": "sentinela: sem bone dedicado - aproxima entre cabeca e pe (usado pelo aimbot)" },
+    "head":      { "value": 7 },
+    "neck":      { "value": 6 },
+    "spine":     { "value": 5 },
+    "pelvis":    { "value": 1 },
+    "shoulderL": { "value": 9 },
+    "elbowL":    { "value": 10 },
+    "handL":     { "value": 11 },
+    "shoulderR": { "value": 13 },
+    "elbowR":    { "value": 14 },
+    "handR":     { "value": 15 },
+    "hipR":      { "value": 17 },
+    "kneeR":     { "value": 18 },
+    "footR":     { "value": 19 },
+    "hipL":      { "value": 20 },
+    "kneeL":     { "value": 21 },
+    "footL":     { "value": 22 }
+  }
+}
