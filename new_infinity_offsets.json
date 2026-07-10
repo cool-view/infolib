@@ -12,18 +12,18 @@
 
   "globals_dw": {
     "_note": "Relativo a client.dll, exceto onde indicado. Fonte: CompiledOffsets em KnownOffsets.h - fallback compilado; dwEntityList tambem e resolvivel por sig-scan em runtime (OffsetRegistry), os demais ainda so usam este valor fixo.",
-    "dwLocalPlayerPawn":       { "hex": "0x23A3238", "decimal": 37368376 },
-    "dwEntityList":            { "hex": "0x254DE50", "decimal": 39116368, "note": "tambem resolvido por sig-scan (OffsetRegistry) em runtime; este e o fallback" },
-    "dwViewMatrix":            { "hex": "0x23A8340", "decimal": 37389120 },
+    "dwLocalPlayerPawn":       { "hex": "0x23A4238", "decimal": 37372472 },
+    "dwEntityList":            { "hex": "0x254EE60", "decimal": 39120480, "note": "tambem resolvido por sig-scan (OffsetRegistry) em runtime; este e o fallback" },
+    "dwViewMatrix":            { "hex": "0x23A9340", "decimal": 37393216 },
     "dwPlantedC4":             { "hex": "0x234FE28", "decimal": 37027368 },
-    "dwGlobalVars":            { "hex": "0x208ED60", "decimal": 34139488, "note": "base do curtime (ver manual.curtime)" },
-    "dwViewAngles":            { "hex": "0x23B8C68", "decimal": 37457000, "note": "angulos da camera, usado pelo Player Wheel" },
-    "dwSensitivity":           { "hex": "0x23A0228", "decimal": 37356072 },
+    "dwGlobalVars":            { "hex": "0x208FD60", "decimal": 34143584, "note": "base do curtime (ver manual.curtime)" },
+    "dwViewAngles":            { "hex": "0x23B9C78", "decimal": 37461112, "note": "angulos da camera, usado pelo Player Wheel" },
+    "dwSensitivity":           { "hex": "0x23A1228", "decimal": 37360168 },
     "dwSensitivity_sensitivity": { "hex": "0x58", "decimal": 88, "note": "offset relativo dentro da struct de dwSensitivity" },
     "dwForceAttack":           { "hex": "0x2064A90", "decimal": 33983120, "note": "reservado, sem uso hoje - NAO confirmado no dump mais recente" },
-    "dwNetworkGameClient":     { "hex": "0x90D490", "decimal": 9491600, "note": "CNetworkGameClient - relativo a engine2.dll, NAO a client.dll" },
+    "dwNetworkGameClient":     { "hex": "0x90D4B0", "decimal": 9491632, "note": "CNetworkGameClient - relativo a engine2.dll, NAO a client.dll" },
     "deltaTick":               { "hex": "0x24C", "decimal": 588, "note": "relativo a dwNetworkGameClient" },
-    "dwLocalPlayerController": { "hex": "0x237DBA0", "decimal": 37215136 }
+    "dwLocalPlayerController": { "hex": "0x237EBA0", "decimal": 37219232 }
   },
 
   "netvars_m": {
